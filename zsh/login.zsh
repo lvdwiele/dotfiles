@@ -9,18 +9,6 @@ test -d "$HOME/bin" &&
 # ENVIRONMENT CONFIGURATION
 # ----------------------------------------------------------------------
 
-# detect interactive shell
-case "$-" in
-    *i*) INTERACTIVE=yes ;;
-    *)   unset INTERACTIVE ;;
-esac
-
-# detect login shell
-case "$0" in
-    -*) LOGIN=yes ;;
-    *)  unset LOGIN ;;
-esac
-
 # enable en_US locale w/ utf-8 encodings if not already configured
 : ${LANG:="en_US.UTF-8"}
 : ${LANGUAGE:="en"}
@@ -36,15 +24,3 @@ unset MAILCHECK
 
 # Setup some custom stuff
 source ~/.ec2config
-
-# -------------------------------------------------------------------
-# MOTD / FORTUNE
-# -------------------------------------------------------------------
-
-test -n "$INTERACTIVE" -a -n "$LOGIN" && {
-   uname -npsr
-   uptime
-   
-   echo "Today in history:"
-   cat /usr/share/calendar/calendar.history | grep `date +'%m/%d'` | awk 'BEGIN { srand() } { print rand() "\t" $0 }' | sort -n | cut -f2- | head -n 1 | awk '{print "\t", $0}'
-}
