@@ -5,7 +5,7 @@ require 'erb'
 require 'fileutils'
 
 %w(registry manager worker logger).each do |dep|
-  require "support/lib/#{dep}"
+  require "./support/lib/#{dep}"
 end
 
 registry = Registry.new(CONFIG_PATH)
@@ -67,13 +67,13 @@ task :update do
   manager.invoke_task('default')
 end
 
-desc 'Reconfigure OSX settings'
-task :osx => :build do
-  logger.denote 'Configuring osx...' do
-    worker.chmod(0755, registry.osx_path)
-    worker.go_and_run(registry.osx_path)
-  end
-end
+# desc 'Reconfigure OSX settings'
+# task :osx => :build do
+#   logger.denote 'Configuring osx...' do
+#     worker.chmod(0755, registry.osx_path)
+#     worker.go_and_run(registry.osx_path)
+#   end
+# end
 
 namespace :oh_my_zsh do
   task :post_build do
@@ -91,12 +91,6 @@ namespace :oh_my_zsh do
   # desc 'Update oh-my-zsh to latest'
   task :update do
     worker.update_submodule "#{registry.vendor_path}/oh-my-zsh"
-  end
-end
-
-namespace :janus do
-  task :update do
-    worker.recursive_update_submodule "#{registry.vendor_path}/janus"
   end
 end
 

@@ -36,7 +36,7 @@ class Logger
   end
 
   def green(text)
-    if @term == 'dumb'
+    if @term == "dumb"
       text
     else
       "\e[32m#{text}\e[0m"

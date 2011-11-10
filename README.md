@@ -1,12 +1,14 @@
 # Self-generating dotfiles
 
+Need to update this with my changes.
+
 ### Goals
 
 - Depend easily on other packages (single-command update)
 - Keep everything under version control
 - Have idempotent yet flexible script that sets everything up
 
-I want to be able to easily depend on other packages for my dotfiles, such as [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), or [janus](https://github.com/carlhuda/janus). When I say "easily depend" I mean being able to run a single command to get the latest package updates without having to redo my customizations. That's the main goal. The second goal is to keep everything under _public_ version control (meaning, private stuff is consolidated and easily gitignored). The third goal is to have a consistent and idempotent, yet flexible bootstrap script. I decided to go the rake route, since I'm a rubyist, and rake is packaged with ruby by default, thus available on every mac.
+I want to be able to easily depend on other packages for my dotfiles, such as [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). When I say "easily depend" I mean being able to run a single command to get the latest package updates without having to redo my customizations. That's the main goal. The second goal is to keep everything under _public_ version control (meaning, private stuff is consolidated and easily gitignored). The third goal is to have a consistent and idempotent, yet flexible bootstrap script. I decided to go the rake route, since I'm a rubyist, and rake is packaged with ruby by default, thus available on every mac.
 
 ### Design
 

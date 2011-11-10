@@ -14,7 +14,6 @@ symlinks:
   gitignore:     .gitignore
   irbrc:         .irbrc
   railsrc:       .railsrc
-  takeup:        .takeup
   todo:          .todo
   ssh_config:    .ssh/config
   rdebugrc:      .rdebugrc
