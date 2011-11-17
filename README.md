@@ -1,7 +1,5 @@
 # Self-generating dotfiles
 
-Need to update this with my changes.
-
 ### Goals
 
 - Depend easily on other packages (single-command update)
@@ -29,29 +27,24 @@ The custom `post_build` tasks include things like symlinking the custom zsh dire
 ### Install
 
     cd ~
-    git clone git://github.com/maxim/dotfiles.git Dotfiles
-    cd Dotfiles
+    git clone git://github.com/sdegoeij/dotfiles.git dotfiles
+    cd dotfiles
     rake
-
-### OS X Customizations
-
-    cd ~/Dotfiles
-    rake osx
 
 ### Make changes
 
-    cd ~/Dotfiles
+    cd ~/dotfiles
     # make changes
     rake
 
 ### Update dependencies
 
-    cd ~/Dotfiles
+    cd ~/dotfiles
     rake update
 
 ### Remove everything generated
 
 Removes symlinks too, be careful
 
-    cd ~/Dotfiles
+    cd ~/dotfiles
     rake cleanup
