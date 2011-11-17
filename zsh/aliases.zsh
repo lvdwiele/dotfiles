@@ -115,6 +115,11 @@ alias undopush="git push -f origin HEAD^:master" # Undo a `git push`
 alias hub="open \`git config -l | grep 'remote.origin.url' | sed -En \ 's/remote.origin.url=git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'\`"
 alias gitx='gitx --commit'
 
+### Project specific aliases
+
+# LPP ADMIN
+alias ldap="ssh ruby@10.200.43.164 -L 2000:10.40.2.78:389 -N"
+
 ### FUN STARTS HERE ###
 
 # Awesome stuff I never really use

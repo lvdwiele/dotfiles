@@ -14,9 +14,13 @@ class Registry
   def symlinks_path
     config['symlinks_path']
   end
-
+  
   def symlinks
     config['symlinks']
+  end
+
+  def scripts
+    config['scripts']
   end
 
   def osx_path

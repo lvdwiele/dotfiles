@@ -38,11 +38,11 @@ class Worker
     end
   end
 
-  def chmod(bits, path)
+  def chmod(bits, path, recursive = false)
     @logger.report('Chmod', bits.to_s(8), :to => path)
 
     unless @dry
-      FileUtils.chmod bits, path
+      recursive ? FileUtils.chmod_R(bits, path) : FileUtils.chmod(bits, path)
     end
   end
 

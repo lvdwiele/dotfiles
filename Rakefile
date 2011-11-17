@@ -35,6 +35,10 @@ task :build do
       worker.copy(src, dst)
     end
 
+    manager.each_permissions_job do |path|
+      worker.chmod(0755, path, true)
+    end
+
     erbs = []
 
     manager.each_erb_job do |src, dst, payload|
