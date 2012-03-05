@@ -1,5 +1,5 @@
 --type-add=ruby=.haml,.builder
---type-add=css=.sass
+--type-add=css=.sass,.scss
 --type-set=markdown=.markdown,.md,.mdown
 --type-set=cucumber=.feature
 --type-set=zsh=.zsh,.zsh-theme
