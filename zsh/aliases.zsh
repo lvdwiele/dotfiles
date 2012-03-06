@@ -55,10 +55,6 @@ alias rroutes='rake routes'
 alias rgrep='rake routes |grep '
 alias mroutes='rroutes | mate'
 
-# todo
-alias todo='todo -d ~/.todo'
-alias t=todo
-
 # ps & other stuff
 alias pgrep='ps ax | grep -v grep | grep $1'
 alias topmem='ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 | tail -10'  # top 10 memory processes
@@ -90,7 +86,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias local_ports='sudo nmap -sT -O localhost'
 
 # GIT
-alias gl='git log --oneline --decorate'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 compdef _git gl=git-log
 
 alias gpr='git pull --rebase'
