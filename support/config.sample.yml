@@ -4,6 +4,11 @@ dotfiles_path: "<%= File.expand_path(File.dirname(__FILE__)) %>"
 # Specify where symlinks will go (normally user's $HOME).
 symlinks_path: "<%= ENV['HOME'] %>"
 
+# These paths will be chmodded
+scripts: 
+  git:           "git"
+  scripts:       "scripts"
+
 # Only files in this list will be symlinked.
 symlinks:
   zshrc:         .zshrc
@@ -54,7 +59,7 @@ github:
 
 # Add personal gitignores here
 gitignore:
-  - config/initializers/YOUR_NAME_initializer.rb
+  -
 
 # Setup ssh config for enabling `ssh foo` type of shortcuts
 ssh:
