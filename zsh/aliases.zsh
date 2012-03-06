@@ -133,3 +133,4 @@ alias hax="growlnotify -a 'Activity Monitor' -m 'WTF R U DOIN'"
 
 # Fun stuff
 alias starwars="telnet towel.blinkenlights.nl"
+

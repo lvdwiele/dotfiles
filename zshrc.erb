@@ -60,3 +60,9 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
    echo "Today in history:"
    cat /usr/share/calendar/calendar.history | grep `date +'%m/%d'` | awk 'BEGIN { srand() } { print rand() "\t" $0 }' | sort -n | cut -f2- | head -n 1 | awk '{print "\t", $0}'
 }
+
+<% if config['zsh']['vars'] %>
+  <% config['zsh']['vars'].each_pair do |name, value| %>
+export <%= name.upcase %>='<%= value %>'
+  <% end %>
+<% end %>
