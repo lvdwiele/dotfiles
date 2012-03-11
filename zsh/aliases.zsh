@@ -3,7 +3,7 @@ alias ls='ls -alG'
 alias ltr='ls -ltrG'
 alias lth='ls -tG|head'
 alias lh='ls -SGhl | less'
-alias tf='tail -f -n $1'
+alias tf='tail -f -n $1 $2'
 
 # general shortcuts
 alias mv='mv -i'
@@ -15,49 +15,8 @@ alias todo='grep -ni TODO *'
 alias rtodo='grep -niR TODO *'
 alias mkgo='mkdir $1 && cd $1'
 alias tophist="history | awk '{print $4}' | sort | uniq -c | sort -rn | head"
-alias conf="mate ~/Code/dotfiles"
+alias conf="mate ~/dotfiles"
 
-#rvm
-alias rvmdef='rvm use default'
-alias r91='rvm use 1.9.1'
-alias r9h='rvm use 1.9.2-head'
-alias r18='rvm use 1.8.7'
-alias rj='rvm use jruby'
-alias rsys='rvm use system'
-
-# ruby & rails shortcuts
-alias annotate='annotate --position before --exclude tests,fixtures'
-alias rs='rails s'
-alias rc='rails c'
-alias rcp='rails c production'
-alias rg='rails generate'
-
-#oldschool RoR shortcuts
-alias rs2='script/server'
-alias rc2='script/console'
-alias rg2='script/generate'
-
-# testing shortcuts
-alias rt='rake --trace'
-alias rtt='rake -T'
-alias rtf='rake test:functionals --trace'
-alias rti='rake test:integration --trace'
-alias rtl='rake test:lib --trace'
-alias rtp='rake test:plugins --trace'
-alias rtu='rake test:units --trace'
-
-# rake
-alias rdm='rake db:migrate'
-alias rdtp='rake db:test:prepare'
-alias rdfl='rake db:fixtures:load'
-alias rdr='rake db:rollback'
-alias rroutes='rake routes'
-alias rgrep='rake routes |grep '
-alias mroutes='rroutes | mate'
-
-# todo
-alias todo='todo -d ~/.todo'
-alias t=todo
 
 # ps & other stuff
 alias pgrep='ps ax | grep -v grep | grep $1'
@@ -90,7 +49,8 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias local_ports='sudo nmap -sT -O localhost'
 
 # GIT
-alias gl='git log --oneline --decorate'
+#alias gl='git log --oneline --decorate'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 compdef _git gl=git-log
 
 alias gpr='git pull --rebase'
@@ -116,6 +76,14 @@ compdef _git gco=git-checkout
 
 alias gba='git branch -a'
 compdef _git gba=git-branch
+
+alias gst='git stash'
+compdef _git gst=git-stash
+
+alias gstp='git stash pop'
+compdef _git gstp=git-stash-pop
+
+
 
 alias undopush="git push -f origin HEAD^:master" # Undo a `git push`
 alias hub="open \`git config -l | grep 'remote.origin.url' | sed -En \ 's/remote.origin.url=git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'\`"
