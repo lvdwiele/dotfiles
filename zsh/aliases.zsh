@@ -83,7 +83,24 @@ compdef _git gst=git-stash
 alias gstp='git stash pop'
 compdef _git gstp=git-stash-pop
 
+alias gsta='git stash apply'
+compdef _git gsta=git-stash-apply
 
+alias gstc='git stash clear'
+compdef _git gstc=git-stash-clear
+
+alias gstl='git stash list'
+compdef _git gstl=git-stash-list
+
+alias gsts='git stash show'
+compdef _git gsts=git-stash-show
+
+
+alias gcm="git commit -m $1"
+compdef _git gcm=git-commit
+
+alias ga="git add $1"
+compdef _git ga=git-add
 
 alias undopush="git push -f origin HEAD^:master" # Undo a `git push`
 alias hub="open \`git config -l | grep 'remote.origin.url' | sed -En \ 's/remote.origin.url=git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'\`"
