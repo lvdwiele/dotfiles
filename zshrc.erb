@@ -20,7 +20,7 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -28,7 +28,7 @@ plugins=(<%= config['zsh']['plugins'].join(' ') %>)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/mysql-5.1.42-osx10.6-x86_64/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin
 export EDITOR='<%= config['zsh']['editor'] %>'
 
 function precmd () {
@@ -56,7 +56,7 @@ esac
 test -n "$INTERACTIVE" -a -n "$LOGIN" && {
    uname -npsr
    uptime
-   
+
    echo "Today in history:"
    cat /usr/share/calendar/calendar.history | grep `date +'%m/%d'` | awk 'BEGIN { srand() } { print rand() "\t" $0 }' | sort -n | cut -f2- | head -n 1 | awk '{print "\t", $0}'
 }
