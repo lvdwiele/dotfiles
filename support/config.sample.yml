@@ -4,6 +4,8 @@ dotfiles_path: "<%= File.expand_path(File.dirname(__FILE__)) %>"
 # Specify where symlinks will go (normally user's $HOME).
 symlinks_path: "<%= ENV['HOME'] %>"
 
+username: YOUR_USERNAME
+
 # These paths will be chmodded
 scripts: 
   git:           "git"
@@ -26,7 +28,7 @@ symlinks:
   pryrc:         .pryrc
 
 zsh:
-  editor: 'mate -w'
+  editor: 'mate -w' # or 'subl'
   theme: 'robbyrussell'
 
   vars:
