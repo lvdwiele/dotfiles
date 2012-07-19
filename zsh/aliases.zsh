@@ -10,14 +10,39 @@ alias mv='mv -i'
 alias md=mkdir
 alias ..='cd ..;' # can then do .. .. .. to move up multiple directories.
 alias ...='cd .. ; cd ..' #also see up() in functions.sh
+alias tree="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias ducks='du -cks * | sort -rn|head -11' # Lists the size of all the folders
+
 alias todo='grep -ni TODO *'
 alias rtodo='grep -niR TODO *'
-alias tophist="history | awk '{print $4}' | sort | uniq -c | sort -rn | head"
-alias conf="subl ~/Code/dotfiles"
 
-# sublime text 2
+alias drop="cd ~/Dropbox"
+alias reload="source ~/.zshrc"
+
+# History
+alias tophist="history | awk '{print $4}' | sort | uniq -c | sort -rn | head"
+alias 'h?'='history | grep $1'
+
+# Sublime Text 2
 alias sub="subl $1"
+
+# Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Empty the Trash on all mounted volumes and the main HDD
+# Also, clear Apple’s System Logs to improve shell startup speed
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
+
+# Full site to PNG
+alias pngsite="/usr/local/bin/webkit2png $1"
 
 #rvm
 alias rvmdef='rvm use default'
@@ -98,7 +123,8 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias local_ports='sudo nmap -sT -O localhost'
 
 # Postgres
-alias pg_start="postgres -D /usr/local/var/postgres"
+alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias psqlstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 
 # GIT
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"

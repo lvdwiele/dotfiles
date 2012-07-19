@@ -6,6 +6,14 @@ function tlog() {
   fi
 }
 
+function schema() {
+  if test "$1" = ""; then
+    grep 'create_table' db/schema.rb | cut -d \" -f2
+  else
+    sed -n "/create_table \"$1/,/^ *end *$/p" db/schema.rb
+  fi
+}
+
 function track_git_branch() {
   if test "`current_branch`" = ""; then
     echo 'Not in git repo.';

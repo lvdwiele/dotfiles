@@ -17,7 +17,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="false"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -28,17 +28,18 @@ plugins=(<%= config['zsh']['plugins'].join(' ') %>)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/X11/bin
 export EDITOR='<%= config['zsh']['editor'] %>'
 
-function precmd () {
-  _z --add "$(pwd -P)"
-}
+# Set window title
+precmd () {print -Pn "\e]0;%n@%m: %~\a"}
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Unhide ~/Library
 chflags nohidden /Users/<%= config['username'] %>/Library/
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 # # detect interactive shell
 # case "$-" in

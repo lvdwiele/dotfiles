@@ -1,4 +1,0 @@
-#compdef bills
-
-_arguments "1: :(pay)"\
-  "2:Bills:($(bills autocomplete))"
