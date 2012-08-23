@@ -1,0 +1,15 @@
+### Homebrew
+
+To fully make use of the aliases contained in this package, you need to install Homebrew.
+
+Run this from the command line:
+
+$ /usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+
+Read the script first if you like.
+
+Then install the prereqs:
+
+$ brew install nmap ngrep readline
+
+And you're all set!

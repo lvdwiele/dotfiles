@@ -8,6 +8,8 @@ require 'fileutils'
   require "./support/lib/#{dep}"
 end
 
+ENV['DEBUG'] = 'false'
+
 registry = Registry.new(CONFIG_PATH)
 logger   = Logger.new(:silent => !ENV['DEBUG'])
 manager  = Manager.new(registry)
@@ -16,7 +18,8 @@ worker   = Worker.new(logger, :dry => ENV['DRY'])
 desc 'Setup everything first time or update things upon change'
 task :default => [ :download,
                    :build,
-                   :install ]
+                   :install,
+                   :homebrew ]
 
 task :download do
   if manager.any_submodules_missing?
@@ -69,6 +72,16 @@ task :update do
   end
 
   manager.invoke_task('default')
+end
+
+desc 'Prints the Homebrew.txt file'
+task :homebrew do
+  brews = `brew list` rescue nil
+  if brews.nil?
+    file = File.open("./HOMEBREW.txt", "r")
+    puts file.read
+    file.close
+  end
 end
 
 # desc 'Reconfigure OSX settings'

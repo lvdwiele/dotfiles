@@ -1,20 +1,9 @@
 # prompt style and colors based on Steve Losh's Prose theme:
 # http://github.com/sjl/oh-my-zsh/blob/master/themes/prose.zsh-theme
 #
-# vcs_info modifications from Bart Trojanowski's zsh prompt:
-# http://www.jukie.net/bart/blog/pimping-out-zsh-prompt
-#
-# git untracked files modification from Brian Carper:
-# http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
-
-# Green if there are staged changes
-# Yellow if there are unstaged changes
-# Red if there are new untracked-yet-unignored files.
-
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
-PR_GIT_UPDATE=1
 
 setopt prompt_subst
 autoload colors
@@ -39,67 +28,32 @@ else
 fi
 
 # enable VCS systems you use
-zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' enable git hg
 
 # check-for-changes can be really slow.
 # you should disable it, if you work with large repositories
 zstyle ':vcs_info:*:prompt:*' check-for-changes false
 
-# set formats
-# %b - branchname
-# %u - unstagedstr (see below)
-# %c - stagedstr (see below)
-# %a - action (e.g. rebase-i)
-# %R - repository path
-# %S - path in the repository
-PR_RST="%{${reset_color}%}"
-FMT_BRANCH="(%{$turquoise%}%b%u%c${PR_RST})"
-FMT_ACTION="(%{$limegreen%}%a${PR_RST})"
-FMT_UNSTAGED="%{$orange%}●"
-FMT_STAGED="%{$limegreen%}●"
-
-zstyle ':vcs_info:*:prompt:*' unstagedstr   "${FMT_UNSTAGED}"
-zstyle ':vcs_info:*:prompt:*' stagedstr     "${FMT_STAGED}"
-zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}"
-zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
-zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
-
-
-function sdegoeij_preexec {
-    case "$(history $HISTCMD)" in
-        *git*)
-            PR_GIT_UPDATE=1
-            ;;
-        *svn*)
-            PR_GIT_UPDATE=1
-            ;;
-    esac
+function prompt_char {
+    git branch >/dev/null 2>/dev/null && echo '±' && return
+    hg root >/dev/null 2>/dev/null && echo '☿' && return
+    echo '○'
 }
-add-zsh-hook preexec sdegoeij_preexec
 
-function sdegoeij_chpwd {
-    PR_GIT_UPDATE=1
-}
-add-zsh-hook chpwd sdegoeij_chpwd
+PROMPT='
+%{$purple%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)
+$(virtualenv_info)$(prompt_char) '
+RPROMPT='$(git_prompt_status) %{$turquoise%}[%h]%{$reset_color%}' # prompt for right side of screen
 
-function sdegoeij_precmd {
-    if [[ -n "$PR_GIT_UPDATE" ]] ; then
-        # check for untracked files or updated submodules, since vcs_info doesn't
-        if [[ ! -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-            PR_GIT_UPDATE=1
-            FMT_BRANCH="on %{$turquoise%}%b%u%c%{$hotpink%}●${PR_RST}"
-        else
-            FMT_BRANCH="on %{$turquoise%}%b%u%c${PR_RST}"
-        fi
-        zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"
 
-        vcs_info 'prompt'
-        PR_GIT_UPDATE=
-    fi
-}
-add-zsh-hook precmd sdegoeij_precmd
+ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%} ✗"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
 
-PROMPT=$'
-%{$purple%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%d%{$reset_color%} $vcs_info_msg_0_
-$(virtualenv_info)$ '
-RPROMPT='%{$turquoise%}[%h]%{$reset_color%}' # prompt for right side of screen
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[green]%} ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[green]%} ═"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"

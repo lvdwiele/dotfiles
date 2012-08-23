@@ -1,4 +1,4 @@
---type-add=js=.coffee,.js
+--type-add=js=.js,.coffee
 --type-add=ruby=.haml,.builder
 --type-add=css=.sass,.scss
 --type-set=markdown=.markdown,.md,.mdown
