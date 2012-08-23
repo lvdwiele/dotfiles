@@ -1,3 +1,6 @@
+# titanium
+alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
+
 # listing files
 alias ls='ls -alG'
 alias ltr='ls -ltrG'
@@ -202,3 +205,4 @@ alias hax="growlnotify -a 'Activity Monitor' -m 'WTF R U DOIN'"
 # Fun stuff
 alias starwars="telnet towel.blinkenlights.nl"
 
+alias beg='bundle exec guard'
