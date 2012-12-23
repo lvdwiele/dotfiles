@@ -28,11 +28,14 @@ plugins=(<%= config['zsh']['plugins'].join(' ') %>)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/X11/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/X11/bin:~/Code/android-sdk-macosx/platform-tools
 export EDITOR='<%= config['zsh']['editor'] %>'
 
 # Set window title
-precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+precmd () {
+  print -Pn "\e]0;%n@%m: %~\a"
+  z --add "$(pwd -P)"
+}
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 

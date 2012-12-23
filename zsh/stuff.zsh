@@ -8,4 +8,4 @@ set -o notify
 unset MAILCHECK
 
 # Setup some custom stuff
-source ~/.ec2config
+#source ~/.ec2config
