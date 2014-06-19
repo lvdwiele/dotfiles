@@ -187,6 +187,9 @@ compdef _git gsts=git-stash-show
 alias gcm="git commit -m $1"
 compdef _git gcm=git-commit
 
+alias gaa="git add --all $1"
+compdef _git gaa=git-add
+
 alias ga="git add $1"
 compdef _git ga=git-add
 
