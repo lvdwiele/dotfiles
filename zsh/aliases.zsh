@@ -209,3 +209,6 @@ alias hax="growlnotify -a 'Activity Monitor' -m 'WTF R U DOIN'"
 alias starwars="telnet towel.blinkenlights.nl"
 
 alias beg='bundle exec guard'
+
+# Grunt serve
+alias grs='grunt serve'
