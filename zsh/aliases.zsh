@@ -1,5 +1,5 @@
 # titanium
-alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
+# alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
 
 # listing files
 alias ls='ls -alG'
@@ -92,7 +92,7 @@ alias rgrep='rake routes |grep '
 alias mroutes='rroutes | subl'
 
 # mobile
-alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
+# alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
 alias startadb='/Developer/SDKs/android-sdk-macosx/platform-tools/adb start-server'
 alias stopadb='/Developer/SDKs/android-sdk-macosx/platform-tools/adb kill-server'
 alias logcat='/Developer/SDKs/android-sdk-macosx/platform-tools/adb -d logcat'
@@ -116,13 +116,13 @@ alias fs="stat -f \"%z bytes\""
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
+alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias whois="whois -h whois-servers.net"
+# alias whois="whois -h whois-servers.net"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # show what ports are open locally
 alias local_ports='sudo nmap -sT -O localhost'
