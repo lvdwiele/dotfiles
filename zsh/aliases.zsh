@@ -1,6 +1,9 @@
 # titanium
 # alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
 
+#react native
+alias run='react-native run-ios'
+
 # listing files
 alias ls='ls -alG'
 alias ltr='ls -ltrG'
