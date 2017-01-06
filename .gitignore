@@ -4,3 +4,5 @@ support/build/
 # Backwards compatibility
 config.yml
 compiled/
+
+.DS_Store
